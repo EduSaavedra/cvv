@@ -1,0 +1,152 @@
+﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="mpageMenu.master.cs" Inherits="SISTEMA_CVV.mpageMenu" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="manifest" href="favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" http-equiv="Content-Type" content="width=device-width, initial-scale=1.0" />    
+    <link rel="stylesheet" type="text/css" href="css/admin.css"/>
+    <link rel="stylesheet" type="text/css" href="css/footer.css"/>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="js/carregar.js" defer="DEFER"></script>
+    <script type="text/ecmascript" src='<%= ResolveUrl("~/js/carregar.js") %>'></script>
+</head>
+<body ondragstart="return false">
+    <div id="loading"><img id="loading-image" src='<%= ResolveUrl("~/img/loader2.gif") %>' alt="Carregando a página..." /></div>
+    <form id="form1" runat="server">
+        <div>
+            <div>
+                <nav>
+                    <ul>
+                        <li id="home" runat="server">
+                            <a class="active" style="width: 80px;" href="Default.aspx"> 
+                                <asp:Image ID="imgHome" runat="server" ImageUrl="img/home.png" ImageAlign="AbsMiddle" Height="18px" Width="23px" />
+                            </a>
+                        </li>
+                        <li id="pacienteMp" class="dropdown">
+                            <a href="#" class="dropbtn">
+                                <asp:Image ID="imgPaciente" runat="server" ImageUrl="img/pac.png" ImageAlign="AbsMiddle" Height="18px" Width="23px" />
+                                <asp:Label Text="Paciente" ForeColor="White" Font-Bold="true" Font-Size="Medium" runat="server" />
+                            </a>
+                            <div class="dropdown-content">
+                                <!--<asp:HyperLink ID="hlIncluirPaciente" runat="server" NavigateUrl="paciente/cadastrar_paciente.aspx">Incluir Pacientes</asp:HyperLink>-->
+                                <asp:HyperLink ID="hlAlterarConsultar" runat="server" NavigateUrl="paciente/consultar_paciente.aspx">Alterar/Consultar</asp:HyperLink>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn">
+                                <asp:Image ID="imgCarteira" runat="server" ImageUrl="img/car.png" ImageAlign="AbsMiddle" Height="20px" Width="25px" />
+                                <asp:Label Text="Carteira" ForeColor="White" Font-Bold="true" Font-Size="Medium" runat="server" />
+                            </a>
+                            <div class="dropdown-content">
+                                <asp:HyperLink ID="hlVacinacao" runat="server" NavigateUrl="carteira/vacinacao.aspx"> Vacinação </asp:HyperLink>
+                                <asp:HyperLink ID="hlConsultarCarteira" runat="server" NavigateUrl="carteira/carteira_vacina.aspx"> Consultar Carteira </asp:HyperLink>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn">
+                                <asp:Image ID="imgFuncionario" runat="server" ImageUrl="img/doc.png" ImageAlign="AbsMiddle" Height="18px" Width="23px" />
+                                <asp:Label Text="Funcionário" ForeColor="White" Font-Bold="true" Font-Size="Medium" runat="server" />
+                            </a>
+                            <div id="adm" class="dropdown-content">
+                                <asp:HyperLink ID="hlConsultaFunc" runat="server" NavigateUrl="funcionario/consulta.aspx"> Consultar </asp:HyperLink>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn">
+                                <asp:Image ID="imgUnidadeSaude" runat="server" ImageUrl="img/uni.png" ImageAlign="AbsMiddle" Height="18px" Width="20px" />
+                                <asp:Label Text="Unidades de Saúde" ForeColor="White" Font-Bold="true" Font-Size="Medium" runat="server" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="unidades_saude/consultar_unidade.aspx">Consultar</a>
+                            </div>
+                        </li>
+                        <li style="float: right;" class="dropdown" >
+                                <asp:HyperLink ID="hplAdministracao" ForeColor="White" Font-Bold="true" Font-Size="Medium" CssClass="dropbtn" runat="server" NavigateUrl="login.aspx">
+                                    <asp:Image ID="imgCadeado" runat="server" ImageUrl="img/cad.png" ImageAlign="AbsMiddle" Height="18px" Width="20px" />
+                                    <asp:Label Text="  Administração" ID="lblAdministracao" ForeColor="White" Font-Bold="true" Font-Size="Medium" runat="server" />
+                                </asp:HyperLink>
+                            <div id="funcMenu" class="dropdown-content">
+                                <a href="/funcionario/alterar_senha.aspx" runat="server" id="btnAlterarSenha" visible="false">
+                                    <asp:Image ImageUrl="img/key.png" ImageAlign="AbsMiddle" Width="20px" ID="imgAlterarSenha" runat="server" />
+                                    <asp:Label ID="lblAlterarSenha" runat="server" Text="   Alterar Senha"></asp:Label>
+                                </a>
+                                <asp:LinkButton CausesValidation="false" ID="lbtnSair" runat="server" OnClick="lbtnSair_Click" visible="false">
+                                    <asp:Image ImageUrl="img/door2.png" ImageAlign="AbsMiddle" Width="20px" ID="imgSair" runat="server" />
+                                    <asp:Label ID="lblSair" runat="server" Text="   Sair"></asp:Label>
+                                </asp:LinkButton>
+                            </div>
+                        </li>
+                        <li style="float:right; color: white;" >
+                            <a href="cvv/sobre.aspx">
+                                <asp:Image ID="imgVersao" runat="server" ImageUrl="img/versao.png" ImageAlign="AbsMiddle" Height="20px" Width="23px" />
+                                <asp:Label ID="lblVersao" ForeColor="White" Font-Bold="true" Font-Size="Medium" runat="server" Text="versão 2.6.12"></asp:Label>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <br />
+        </div>
+        <div style="min-height:100%; position:relative;">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer class="footer-distributed">
+            <div class="footer-left">
+	            <p class="footer-links">
+		            <a href="http://vacinacaovirtual.ddns.net:46801/Default.aspx">CVV</a>·
+			        <a target="_blank" href="http://www.umc.br/">UMC</a>
+	            </p>
+                <i class="fa fa-map-marker"></i>
+                <br /><br />
+	            <p class="footer-company-name"> Marcelo Leite & Marcos Saavedra · CVV &copy; 2017</p>
+            </div>
+
+            <div class="footer-center">
+	            <div>
+		            <i class="fa fa-map-marker"></i>
+		            <p><a href="mailto:vacinacaovirtual@outlook.com">Contato via e-mail</a></p><br />
+                    <i class="fa fa-envelope"></i>
+                    <p class="auto-style1">Melhor visualizado no </p>
+                    <a target="_blank" href="https://www.google.com/chrome/browser/desktop/index.html"> 
+                        <asp:Image runat="server" ImageAlign="AbsMiddle" ImageUrl="img/chrome.png" Width="25px"></asp:Image> 
+                    </a>
+	            </div>
+	            <div>
+		            <i class="fa fa-map-marker"></i>
+		            <p><span>Avenida Imperatriz Leopoldina, 550 -  São Paulo, Brasil </span></p>
+	            </div>
+            </div>
+            <div class="footer-right">
+	            <p class="footer-company-about">
+		            <span><asp:Image runat="server" ImageUrl="img/logov2.png" Width="165px"></asp:Image></span>
+	            </p>       
+	            <div class="footer-icons">
+	            </div>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
